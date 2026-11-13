@@ -1,0 +1,58 @@
+[
+  {
+    "id": "machine-001",
+    "name": "Presse hydraulique 01",
+    "zone": "Production A",
+    "status": "En fonctionnement",
+    "dailyProduction": 2450
+  },
+  {
+    "id": "machine-002",
+    "name": "Convoyeur 03",
+    "zone": "Entrepôt",
+    "status": "En fonctionnement",
+    "dailyProduction": 1820
+  },
+  {
+    "id": "machine-003",
+    "name": "Unité de refroidissement 02",
+    "zone": "Utilités",
+    "status": "À l'arrêt",
+    "dailyProduction": 0
+  },
+  {
+    "id": "machine-004",
+    "name": "Robot d'assemblage 04",
+    "zone": "Production B",
+    "status": "En fonctionnement",
+    "dailyProduction": 3110
+  },
+  {
+    "id": "machine-005",
+    "name": "Découpeuse laser 02",
+    "zone": "Production A",
+    "status": "En panne",
+    "dailyProduction": 0
+  },
+  {
+    "id": "machine-006",
+    "name": "Mélangeur industriel 01",
+    "zone": "Production C",
+    "status": "En fonctionnement",
+    "dailyProduction": 1260
+  },
+  {
+    "id": "machine-007",
+    "name": "Compresseur 02",
+    "zone": "Utilités",
+    "status": "À l'arrêt",
+    "dailyProduction": 0
+  },
+  {
+    "id": "machine-008",
+    "name": "Conditionneuse 05",
+    "zone": "Production B",
+    "status": "En fonctionnement",
+    "dailyProduction": 2780
+  }
+]
