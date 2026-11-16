@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# FactoryPulse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FactoryPulse est un petit tableau de bord React pour suivre les machines d'un
+atelier. Les données de départ sont lues depuis `public/machines.json`. Les
+ajouts, changements de statut et suppressions sont gardés en mémoire pendant la
+session et sont réinitialisés au rechargement de la page.
 
-## Available Scripts
+## Démarrer en local
 
-In the project directory, you can run:
+Prérequis : Node.js 22 ou une version plus récente et npm.
 
-### `npm start`
+```bash
+npm install
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ouvrez l'adresse affichée par Vite (par défaut `http://localhost:5173`).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Démarrer avec Docker
 
-### `npm test`
+Prérequis : Docker avec le plugin Docker Compose.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+docker compose up --build
+```
 
-### `npm run build`
+Ouvrez `http://localhost:8080`. Pour arrêter le conteneur, exécutez
+`docker compose down`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `/` : indicateurs et production journalière.
+- `/machines` : recherche, filtres, changement de statut et suppression.
+- `/machines/new` : formulaire d'ajout avec validation.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Les trois statuts disponibles sont « En fonctionnement », « À l'arrêt » et
+« En panne ». Le tableau de bord recalcule ses indicateurs à partir de la liste
+actuelle des machines.
 
-### `npm run eject`
+## Tests
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm test
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Les tests utilisent Jest et React Testing Library.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Organisation du code
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `src/App.jsx` charge le fichier JSON une fois et partage la liste des machines
+  avec les pages.
+- `src/Pages/` contient le tableau de bord, la liste et le formulaire.
+- `src/Components/` contient la navigation et le tableau réutilisable.
+- `src/constants/machines.js` liste les statuts autorisés.
+- `src/utils/machines.js` contient la validation, la création d'identifiants et
+  les classes visuelles des statuts.
+- `public/machines.json` est uniquement la source initiale des données.
