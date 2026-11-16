@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import MachineTable from '../Components/Machines/MachineTable';
-import SearchBar from '../Components/Machines/SearchBar';
-import StatusFilter from '../Components/Machines/StatusFilter';
+import { MACHINE_STATUSES } from '../constants/machines';
 
 function Machines() {
   const { machines, updateMachineStatus, deleteMachine } = useOutletContext();
@@ -39,8 +38,32 @@ function Machines() {
       </section>
 
       <section aria-label="Rechercher et filtrer les machines" className="panel filters-panel">
-        <SearchBar onChange={setSearch} value={search} />
-        <StatusFilter onChange={setStatusFilter} value={statusFilter} />
+        <label className="search-field">
+          <span aria-hidden="true">⌕</span>
+          <input
+            aria-label="Rechercher une machine"
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Rechercher par nom ou identifiant"
+            type="search"
+            value={search}
+          />
+        </label>
+        <label>
+          <span className="sr-only">Filtrer par statut</span>
+          <select
+            aria-label="Filtrer par statut"
+            className="filter-select"
+            onChange={(event) => setStatusFilter(event.target.value)}
+            value={statusFilter}
+          >
+            <option value="">Tous les statuts</option>
+            {MACHINE_STATUSES.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </label>
         {(search || statusFilter) && (
           <button className="secondary-button" onClick={resetFilters} type="button">
             Réinitialiser

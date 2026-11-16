@@ -674,52 +674,6 @@ button {
     align-items: stretch;
   }
 
-  .machine-table-wrap:not(.compact-table) .machine-table,
-  .machine-table-wrap:not(.compact-table) .machine-table thead,
-  .machine-table-wrap:not(.compact-table) .machine-table tbody,
-  .machine-table-wrap:not(.compact-table) .machine-table tr,
-  .machine-table-wrap:not(.compact-table) .machine-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .machine-table-wrap:not(.compact-table) .machine-table thead {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    clip-path: inset(50%);
-  }
-
-  .machine-table-wrap:not(.compact-table) .machine-table tr {
-    margin-bottom: 10px;
-    padding: 10px 13px;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    background: #fff;
-  }
-
-  .machine-table-wrap:not(.compact-table) .machine-table td {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 9px 0;
-    border-bottom: 1px solid #edf0f2;
-    white-space: normal;
-  }
-
-  .machine-table-wrap:not(.compact-table) .machine-table td::before {
-    color: var(--color-muted);
-    content: attr(data-label);
-    font-size: 10px;
-  }
-
-  .machine-table-wrap:not(.compact-table) .machine-table td:last-child {
-    border-bottom: 0;
-  }
-
   .search-field,
   .filter-select {
     width: 100%;

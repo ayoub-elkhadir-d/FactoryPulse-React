@@ -1,5 +1,5 @@
-import EmptyState from './EmptyState';
-import MachineCard from './MachineCard';
+import { MACHINE_STATUSES } from '../../constants/machines';
+import { getStatusClass } from '../../utils/machines';
 
 function MachineTable({
   machines,

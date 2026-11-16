@@ -1,11 +1,21 @@
 import { Link, useOutletContext } from 'react-router-dom';
 import MachineTable from '../Components/Machines/MachineTable';
-import StatCard from '../Components/Dashboard/StatCard';
-import { getMachineStats } from '../utils/dashboard';
 
 function Dashboard() {
   const { machines } = useOutletContext();
-  const stats = getMachineStats(machines);
+  const runningCount = machines.filter(
+    (machine) => machine.status === 'En fonctionnement'
+  ).length;
+  const stoppedCount = machines.filter(
+    (machine) => machine.status === "À l'arrêt"
+  ).length;
+  const brokenCount = machines.filter(
+    (machine) => machine.status === 'En panne'
+  ).length;
+  const totalProduction = machines.reduce(
+    (total, machine) => total + machine.dailyProduction,
+    0
+  );
 
   const chartMachines = [...machines]
     .sort((first, second) => second.dailyProduction - first.dailyProduction)
@@ -14,32 +24,6 @@ function Dashboard() {
     ...chartMachines.map((machine) => machine.dailyProduction),
     0
   );
-  const statCards = [
-    {
-      label: 'Total des machines',
-      value: stats.total,
-      note: 'Machines enregistrées',
-      tone: '',
-    },
-    {
-      label: 'En fonctionnement',
-      value: stats.running,
-      note: 'Machines actives',
-      tone: 'running',
-    },
-    {
-      label: "À l'arrêt",
-      value: stats.stopped,
-      note: 'Machines arrêtées',
-      tone: 'stopped',
-    },
-    {
-      label: 'En panne',
-      value: stats.broken,
-      note: 'Machines à vérifier',
-      tone: 'broken',
-    },
-  ];
 
   return (
     <>
@@ -51,9 +35,26 @@ function Dashboard() {
       </section>
 
       <section aria-label="Indicateurs des machines" className="stats-grid">
-        {statCards.map((card) => (
-          <StatCard key={card.label} {...card} />
-        ))}
+        <article className="stat-card">
+          <span className="stat-label">Total des machines</span>
+          <strong className="stat-value">{machines.length}</strong>
+          <span className="stat-note">Machines enregistrées</span>
+        </article>
+        <article className="stat-card running">
+          <span className="stat-label">En fonctionnement</span>
+          <strong className="stat-value">{runningCount}</strong>
+          <span className="stat-note">Machines actives</span>
+        </article>
+        <article className="stat-card stopped">
+          <span className="stat-label">À l'arrêt</span>
+          <strong className="stat-value">{stoppedCount}</strong>
+          <span className="stat-note">Machines arrêtées</span>
+        </article>
+        <article className="stat-card broken">
+          <span className="stat-label">En panne</span>
+          <strong className="stat-value">{brokenCount}</strong>
+          <span className="stat-note">Machines à vérifier</span>
+        </article>
       </section>
 
       <section aria-labelledby="production-title" className="panel">
@@ -61,7 +62,7 @@ function Dashboard() {
           <div>
             <h2 id="production-title">Production par machine</h2>
             <p>
-              {stats.totalProduction.toLocaleString('fr-FR')} pièces produites aujourd’hui
+              {totalProduction.toLocaleString('fr-FR')} pièces produites aujourd’hui
             </p>
           </div>
         </div>
