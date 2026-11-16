@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import { MACHINE_STATUSES } from '../constants/machines';
 import { createMachineId, validateMachine } from '../utils/machines';
+import MachineForm from '../Components/Machines/MachineForm';
 
 const emptyForm = {
   name: '',

@@ -49,9 +49,9 @@ Les tests utilisent Jest et React Testing Library.
 
 - `src/App.jsx` charge le fichier JSON une fois et partage la liste des machines
   avec les pages.
-- `src/Pages/` contient le tableau de bord, la liste et le formulaire.
-- `src/Components/` contient la navigation et le tableau réutilisable.
+- `src/Pages/` contient le tableau de bord, la liste et la page d'ajout.
+- `src/Components/` contient les cartes, le tableau et les contrôles réutilisables.
 - `src/constants/machines.js` liste les statuts autorisés.
-- `src/utils/machines.js` contient la validation, la création d'identifiants et
-  les classes visuelles des statuts.
+- `src/utils/` contient le calcul des indicateurs, la validation et la création
+  d'identifiants.
 - `public/machines.json` est uniquement la source initiale des données.
